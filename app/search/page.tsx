@@ -1,14 +1,21 @@
-import { Metadata } from 'next'
+'use client'
+
+import React, { Suspense } from 'react'
 import Body from './Body'
+import { VscLoading } from 'react-icons/vsc'
 
-// Page metadata
-export const metadata: Metadata = {
-  title: "Spotify || Search Music"
-}
-
-// Server Component
-const Page = async () => {
-  return <Body/>
+const Page = () => {
+  return (
+    <Suspense
+      fallback={
+        <div className="p-4 flex justify-center items-center min-h-44">
+          <VscLoading className="text-4xl animate-spin" />
+        </div>
+      }
+    >
+      <Body />
+    </Suspense>
+  )
 }
 
 export default Page
