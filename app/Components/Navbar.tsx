@@ -6,11 +6,14 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
 const Navbar = () => {
-  const [input, setInput] = useState('New Song')
+  const [input, setInput] = useState('')
   const router = useRouter()
 
   // Handle form submission
   const handleSearch = (e: React.FormEvent) => {
+    if(!input){
+      return
+    }
     e.preventDefault() // prevent page reload
     if (input.trim() !== '') {
       router.push(`/search?q=${encodeURIComponent(input.trim())}`)
